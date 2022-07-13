@@ -1,0 +1,12 @@
+[Unit]
+Description=Hive Alert
+After=network.target
+
+[Service]
+Type=simple
+User=hivealert
+WorkingDirectory=/opt/hivealert
+ExecStart=/opt/hivealert/.local/bin/gunicorn -b 0.0.0.0:5000 --access-logfile /opt/hivealert/access.log --chdir /opt/hivealert/hivealert hivealert:app
+
+[Install]
+WantedBy=multi-user.target
